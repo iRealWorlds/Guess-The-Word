@@ -62,9 +62,9 @@ namespace GuessTheWord.Forms
             catch
             {
                 LabelInputFeedback.Text = "You have already tried that letter!";
-                return;//TODO A status message with already tried?
+                return;
             }
-
+            InputTry.Focus();
             LabelInputFeedback.Text = String.Empty;
             if (result)
             {
@@ -88,7 +88,20 @@ namespace GuessTheWord.Forms
                     InputTry.Hide();
                     ButtonTry.Hide();
                     TimerTimeSpent.Stop();
+                    LabelCurrent.Text = String.Empty;
+                    foreach(var letter in CurrentGame.Word)
+                    {
+                        LabelCurrent.Text += $"{letter} ";
+                    }
                 }
+            }
+        }
+
+        private void InputTry_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                ButtonTry_Click(this, EventArgs.Empty);
             }
         }
     }

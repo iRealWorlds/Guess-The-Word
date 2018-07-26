@@ -15,7 +15,7 @@ namespace GuessTheWord
             "masina", "trabant", "avion",
             "ceva", "altceva", "carte"
         };
-        private readonly char[] Word = GenerateWord().ToUpper().ToCharArray();
+        public char[] Word { get; private set; } = GenerateWord().ToUpper().ToCharArray();
         public readonly int MaxErrors = 3;
         public int Errors { get; set; } = 0;
         public List<char> Tried { get; set; } = new List<char>();
@@ -23,12 +23,10 @@ namespace GuessTheWord
 
         public Game()
         {
-            var currentState = new StringBuilder();
-            currentState.Append(Word[0]);
-            for (var i = 1; i < Word.Length - 1; ++i)
-                currentState.Append(" _ ");
-            currentState.Append(Word[Word.Length - 1]);
-            this.CurrentState = currentState.ToString();
+            Tried.Add(Word[0]);
+            if(Word[0] != Word[Word.Length - 1])
+                Tried.Add(Word[Word.Length - 1]);
+            UpdateCurrentState();
         }
 
         public void UpdateCurrentState()

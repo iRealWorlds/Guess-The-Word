@@ -138,6 +138,7 @@ namespace GuessTheWord.Forms
             this.InputTry.Name = "InputTry";
             this.InputTry.Size = new System.Drawing.Size(683, 33);
             this.InputTry.TabIndex = 0;
+            this.InputTry.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.InputTry_KeyPress);
             // 
             // LabelWon
             // 
