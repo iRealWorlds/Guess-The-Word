@@ -13,7 +13,10 @@ namespace GuessTheWord
             "praf", "cuvant", "lanterna",
             "mancare", "prajitura", "carne",
             "masina", "trabant", "avion",
-            "ceva", "altceva", "carte"
+            "ceva", "altceva", "carte",
+            "cartof", "Scooby-Doo", "foca",
+            "telefon", "Dirigu", "iubitele",
+            "Dorian", "cocatrice"
         };
         public char[] Word { get; private set; } = GenerateWord().ToUpper().ToCharArray();
         public readonly int MaxErrors = 3;
@@ -27,6 +30,7 @@ namespace GuessTheWord
             if(Word[0] != Word[Word.Length - 1])
                 Tried.Add(Word[Word.Length - 1]);
             UpdateCurrentState();
+            Errors = 0;
         }
 
         public void UpdateCurrentState()
